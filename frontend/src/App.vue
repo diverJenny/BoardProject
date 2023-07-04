@@ -9,7 +9,7 @@
     </nav>
       <v-app>
         <v-main>
-          <!-- component가 보여지는 자리 -->
+          <!-- router.js에서 선언해둔 component가 보여지는 자리 -->
           <router-view/>
         </v-main>
       </v-app>

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 // import Home from "@"
 import Login from "@/views/Login.vue";
 import SignUp from "@/views/SignUp.vue";
+import Home from "@/views/Home.vue";
 
 
 const routes = [
@@ -9,7 +10,8 @@ const routes = [
         // route url path
         path: '/',
         // route로 연결할때 사용할 이름(필수X)
-        name: 'HomeView'
+        name: 'Home',
+        component: Home
     },
     {
         path: '/login',
