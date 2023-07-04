@@ -1,42 +1,27 @@
 <template>
-  <PageHeader/> <!-- 헤더 컴포넌트 -->
-  <router-view/>  <!-- 페이지 이동이 표시될 곳 -->
-  <PageFooter/> <!-- 푸터 컴포넌트 -->
+  <div id="app">
+    <nav>
+      <router-link to="/">OK Board</router-link>
+      <!--   to 속성은 router.js에서 선언한 path와 연결
+      :to를 사용하면 router.js에 설정한 name을 사용할 수 있음.(path가 아닌 name과 매칭)   -->
+      <router-link :to="{name: 'LoginPage'}">Log in</router-link>
+      <router-link to="/signUp">Sign Up</router-link>
+    </nav>
+      <v-app>
+        <v-main>
+          <!-- component가 보여지는 자리 -->
+          <router-view/>
+        </v-main>
+      </v-app>
+  </div>
 </template>
 
 <script>
-import PageHeader from '@/components/PageHeader'
-import PageFooter from '@/components/PageFooter'
 
 export default {
   name: 'App',
-  components: {
-    PageFooter,
-    PageHeader
-  }
+  data: () => ({
+    //
+  }),
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
