@@ -1,19 +1,47 @@
 <!-- Login.vue -->
 <template>
-  <div class="login">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-sheet width="300" class="mx-auto">
+    <v-form fast-fail @submit.prevent>
+      <v-text-field
+          v-model="state.form.email"
+          label="e-mail"
+          :rules="emailRules"
+      ></v-text-field>
+
+      <v-text-field
+          v-model="state.form.password"
+          label="password"
+          :rules="passwordRules"
+      ></v-text-field>
+
+      <v-btn block class="mt-2" @click="submit()">Submit</v-btn>
+    </v-form>
+  </v-sheet>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import {reactive} from "vue";
+// import {stat} from "@babel/core/lib/gensync-utils/fs";
+import axios from "axios";
 
 export default {
-  name: 'LoginPage',
-  components: {
-    HelloWorld
+  // methods: {stat},
+  setup() {
+    const state = reactive({
+      form: {
+        email: "",
+        password: ""
+      }
+    });
+
+    const submit = () => {
+      axios.post("/account/login", state.form).then((res) => {
+        console.log(res);
+        alert("로그인 하였습니다.");
+      })
+    }
+
+    return {state, submit}
   }
-}
+};
 </script>

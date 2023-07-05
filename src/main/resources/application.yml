@@ -7,8 +7,11 @@ spring:
   # ???? spring.io? doc?? ?????.
   # JPA ??
   jpa:
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    open-in-view: false
+    show-sql: true
     hibernate:
+      format_sql: true
       ddl-auto: update
-      database-platform: org.hibernate.dialect.MariaDBDialect
 server:
   port: 3000

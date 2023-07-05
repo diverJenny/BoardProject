@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 // 필드의 Getter를 생성
 @Getter
+@Table(name = "user")
 public class User {
 
     // 해당 컬럼이 식별키라는 것을 의미
