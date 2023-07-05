@@ -1,26 +1,45 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">OK Board</router-link>
-      <!--   to 속성은 router.js에서 선언한 path와 연결
-      :to를 사용하면 router.js에 설정한 name을 사용할 수 있음.(path가 아닌 name과 매칭)   -->
-      <router-link :to="{name: 'LoginPage'}">Log in</router-link>
-      <router-link to="/signUp">Sign Up</router-link>
-    </nav>
-      <v-app>
-        <v-main>
-          <!-- router.js에서 선언해둔 component가 보여지는 자리 -->
-          <router-view/>
-        </v-main>
-      </v-app>
-  </div>
+  <v-layout class="rounded rounded-md">
+    <v-app-bar title="OK Board">
+      <Header/>
+    </v-app-bar>
+
+<!--    <v-navigation-drawer>
+      <v-list>
+        <v-list-item title="Navigation">
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>-->
+
+    <v-main class="d-flex align-center justify-center" style="min-height: 300px;">
+      <router-view></router-view>
+    </v-main>
+  </v-layout>
 </template>
 
-<script>
-export default {
-  name: 'App',
-  data: () => ({
-    //
-  }),
-};
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
+<script setup>
+import Header from "@/components/PageHeader.vue";
+import Footer from "@/components/PageFooter.vue";
 </script>

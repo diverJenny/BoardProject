@@ -5,16 +5,14 @@
       <v-text-field
           v-model="state.form.email"
           label="e-mail"
-          :rules="emailRules"
       ></v-text-field>
 
       <v-text-field
           v-model="state.form.password"
           label="password"
-          :rules="passwordRules"
       ></v-text-field>
 
-      <v-btn block class="mt-2" @click="submit()">Submit</v-btn>
+      <v-btn block class="mt-2" @click="submit()">Login</v-btn>
     </v-form>
   </v-sheet>
 </template>
@@ -35,7 +33,7 @@ export default {
     });
 
     const submit = () => {
-      axios.post("/account/login", state.form).then((res) => {
+      axios.post("/api/account/login", state.form).then((res) => {
         console.log(res);
         alert("로그인 하였습니다.");
       })

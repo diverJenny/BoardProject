@@ -1,18 +1,18 @@
 <template>
-  <HelloWorld />
+  <div class="col" v-for="i in 4" :key="i">
+    <Card/>
+  </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import Card from "@/components/card.vue";
 
-// Components
-import HelloWorld from '../components/HelloWorld.vue';
-
-export default defineComponent({
-  name: 'HomeView',
-
-  components: {
-    HelloWorld,
-  },
-});
+export default {
+  name: "Home",
+  components: {Card}
+}
 </script>
+
+<style scoped>
+
+</style>
