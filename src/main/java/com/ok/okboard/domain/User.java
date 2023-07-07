@@ -1,6 +1,8 @@
 package com.ok.okboard.domain;
 
-import lombok.Getter;
+import com.ok.okboard.dto.UserDTO;
+import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -9,19 +11,25 @@ import java.time.LocalDateTime;
 @Entity
 // 필드의 Getter를 생성
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "user")
 public class User {
 
     // 해당 컬럼이 식별키라는 것을 의미
     @Id
     // 식별키 생성 전략 명시(AUTO : 데이터베이스에 맞게 자동으로 생성)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     // DB 컬럼으로 등록
     @Column(name = "user_id")
-    private  Long id;
+    private Long id;
 
     @Column(length = 50, nullable = false)
     private String email;
+
+    @Column(length = 10, nullable = false)
+    private String name;
 
     @Column(length = 50, nullable = false)
     private String password;
@@ -29,6 +37,22 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    /*@Column(nullable = false)
+    private LocalDateTime updatedAt;*/
+
     @Column(length = 20, nullable = false)
-    private String role;
+    @ColumnDefault("false")
+    private Boolean role;
+
+    public UserDTO toUserDto() {
+        return UserDTO.builder()
+                .user_id(id)
+                .email(email)
+                .name(name)
+                .password(password)
+                .createdAt(createdAt)
+                .role(role)
+                .build();
+    }
+
 }

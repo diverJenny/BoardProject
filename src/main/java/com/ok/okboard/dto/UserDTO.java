@@ -1,13 +1,33 @@
 package com.ok.okboard.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.ok.okboard.domain.User;
+import lombok.*;
 
-@Getter
-@Setter
+import java.time.LocalDateTime;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Builder
 public class UserDTO {
 
-//    @NotEmpty(message = "이메일")
+    private Long user_id;
+    private String email;
+    private String name;
+    private String password;
+    private LocalDateTime createdAt;
+    private Boolean role;
 
+    public User toUser() {
+        return User.builder()
+                .id(user_id)
+                .email(email)
+                .name(name)
+                .password(password)
+                .createdAt(createdAt)
+                .role(role)
+                .build();
+    }
 
 }
