@@ -25,6 +25,13 @@ public class UserController {
         return ResponseEntity.ok(dtoList);
     }
 
+    // 사용자 조회
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getUser(@PathVariable("id") Long id) throws Exception{
+        UserDTO user = userService.findUserById(id);
+        return ResponseEntity.ok(user);
+    }
+
     // 회원가입
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody UserDTO userDto) throws Exception{

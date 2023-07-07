@@ -24,8 +24,12 @@ public class UserService {
         return userDtoList;
     }
 
-
     public void createUser(UserDTO userDto) {
 
+    }
+
+    public UserDTO findUserById(Long id) {
+//        return repository.findById(id).orElseThrow().toDto();
+        return null;
     }
 }
