@@ -25,8 +25,7 @@ public class UserService {
     }
 
 
-    /*public UserDTO findUserById(Long id) throws Exception {
-        return repository.findById(id).orElseThrow().toUserDto();
-    }*/
+    public void createUser(UserDTO userDto) {
 
+    }
 }
