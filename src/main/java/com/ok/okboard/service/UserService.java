@@ -16,7 +16,7 @@ public class UserService {
     private final UserRepository repository;
 
     public List<UserDTO> getUsers() throws Exception{
-        List<User> userList = repository.findAllUser();
+        List<User> userList = repository.findAll();
         List<UserDTO> userDtoList = new ArrayList<>();
         for (User user : userList) {
             userDtoList.add(user.toUserDto());

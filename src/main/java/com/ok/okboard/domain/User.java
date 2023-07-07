@@ -46,7 +46,7 @@ public class User {
 
     public UserDTO toUserDto() {
         return UserDTO.builder()
-                .user_id(id)
+                .id(id)
                 .email(email)
                 .name(name)
                 .password(password)
