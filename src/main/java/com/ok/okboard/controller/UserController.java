@@ -27,7 +27,7 @@ public class UserController {
 
     // 사용자 조회
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getUser(@PathVariable("id") Long id) throws Exception{
+    public ResponseEntity<?> getUsers(@PathVariable("id") Long id) throws Exception{
         UserDTO user = userService.findUserById(id);
         return ResponseEntity.ok(user);
     }
@@ -41,4 +41,23 @@ public class UserController {
         return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
     }
 
+    // 사용자 수정
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateUser(@PathVariable("id") Long id) throws Exception {
+        UserDTO userDto = userService.findUserById(id);
+        String userName = userDto.getName();
+        String password = userDto.getPassword();
+        userDto.setName(userName);
+        userDto.setPassword(password);
+        userService.createUser(userDto);
+
+        return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+    }
+
+    //사용자 삭제
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable("id") Long id) throws Exception {
+        userService.deleteUser(id);
+        return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+    }
 }

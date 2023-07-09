@@ -22,7 +22,7 @@ public class User {
     // 식별키 생성 전략 명시(AUTO : 데이터베이스에 맞게 자동으로 생성)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     // DB 컬럼으로 등록
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false, updatable = false)
     private Long id;
 
     @Column(length = 50, nullable = false)
