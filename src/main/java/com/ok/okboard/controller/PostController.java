@@ -13,13 +13,4 @@ import java.util.List;
 @ResponseBody
 public class PostController {
 
-
-
-    /*@GetMapping("/posts")
-    public List<String> getPosts() {
-
-
-
-        return posts;
-    }*/
 }

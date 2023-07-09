@@ -4,12 +4,7 @@ import com.ok.okboard.domain.User;
 import com.ok.okboard.dto.UserDTO;
 import com.ok.okboard.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +30,18 @@ public class UserService {
                 .orElseThrow(() -> new Exception("User not found with ID: " + id));
     }
 
-    public Long createUser(UserDTO userDto) throws Exception {
-        return repository.save(userDto.toUser()).getId();
-    }
-
     public void deleteUser(Long id) throws Exception {
         repository.deleteById(id);
+    }
+
+    public void updateUser(UserDTO userDto) throws Exception {
+        User existingUser = repository.findById(userDto.getId())
+                .orElseThrow(() -> new Exception("User not found with ID: " + userDto.getId()));
+
+        existingUser.setName(userDto.getName());
+        existingUser.setPassword(userDto.getPassword());
+        existingUser.setUpdatedAt(userDto.getUpdatedAt());
+
+        repository.save(existingUser);
     }
 }

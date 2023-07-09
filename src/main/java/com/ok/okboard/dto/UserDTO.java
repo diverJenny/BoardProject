@@ -17,6 +17,7 @@ public class UserDTO {
     private String name;
     private String password;
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private Boolean role;
 
     public User toUser() {
@@ -26,6 +27,7 @@ public class UserDTO {
                 .name(name)
                 .password(password)
                 .createdAt(createdAt)
+                .updatedAt(updatedAt)
                 .role(role)
                 .build();
     }

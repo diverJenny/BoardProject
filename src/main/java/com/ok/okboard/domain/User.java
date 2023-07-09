@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @Entity
 // 필드의 Getter를 생성
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "user")
 public class User {
 
     // 해당 컬럼이 식별키라는 것을 의미
@@ -24,23 +24,11 @@ public class User {
     // DB 컬럼으로 등록
     @Column(name = "user_id", nullable = false, updatable = false)
     private Long id;
-
-    @Column(length = 50, nullable = false)
     private String email;
-
-    @Column(length = 10, nullable = false)
     private String name;
-
-    @Column(length = 50, nullable = false)
     private String password;
-
-    @Column(nullable = false)
     private LocalDateTime createdAt;
-
-    /*@Column(nullable = false)
-    private LocalDateTime updatedAt;*/
-
-    @Column(length = 20, nullable = false)
+    private LocalDateTime updatedAt;
     @ColumnDefault("false")
     private Boolean role;
 

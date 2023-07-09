@@ -3,6 +3,7 @@ package com.ok.okboard.controller;
 import com.ok.okboard.dto.UserDTO;
 import com.ok.okboard.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -32,9 +34,10 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    // 회원가입
+
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody UserDTO userDto) throws Exception{
+
         userDto.setCreatedAt(LocalDateTime.now());
         userDto.setRole(false);
         userService.createUser(userDto);
@@ -43,13 +46,14 @@ public class UserController {
 
     // 사용자 수정
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateUser(@PathVariable("id") Long id) throws Exception {
-        UserDTO userDto = userService.findUserById(id);
-        String userName = userDto.getName();
-        String password = userDto.getPassword();
-        userDto.setName(userName);
-        userDto.setPassword(password);
-        userService.createUser(userDto);
+    public ResponseEntity<String> updateUser(@PathVariable("id") Long id, @RequestBody UserDTO userDto) throws Exception {
+        UserDTO existingUser = userService.findUserById(id);
+
+        existingUser.setName(userDto.getName());
+        existingUser.setPassword(userDto.getPassword());
+        existingUser.setUpdatedAt(LocalDateTime.now());
+
+        userService.updateUser(existingUser);
 
         return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
     }

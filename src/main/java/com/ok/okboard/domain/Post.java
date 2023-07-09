@@ -7,27 +7,16 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Table(name = "post")
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "post_id")
     private Long id;
-
-    @Column(length = 50, nullable = false)
     private String title;
-
-    @Lob
     private String content;
-
-    @Column
     private LocalDateTime createdAt;
-
-    @Column
     private LocalDateTime updatedAt;
-
-    @Column
     private Long viewCnt;
 
     @ManyToOne(fetch = FetchType.LAZY)
