@@ -29,4 +29,27 @@ public class PostService {
                 .map(Post::toPostDto)
                 .orElseThrow(() -> new Exception("Post not found with Id: " + id));
     }
+
+    public int createPost(PostDTO postDto) {
+        Post post = new Post();
+        post.setTitle(postDto.getTitle());
+        post.setContent(postDto.getContent());
+
+        return repository.save(postDto.toPost()).getId();
+    }
+
+    public void updatePost(PostDTO postDto) throws Exception {
+        Post existingPost = repository.findById(postDto.getId())
+                .orElseThrow(() -> new Exception("Post not found with ID: " + postDto.getId()));
+
+        existingPost.setTitle(postDto.getTitle());
+        existingPost.setContent(postDto.getContent());
+        existingPost.setUpdatedAt(postDto.getUpdatedAt());
+
+        repository.save(existingPost);
+    }
+
+    public void deletePost(int id) {
+        repository.deleteById(id);
+    }
 }

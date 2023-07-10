@@ -3,13 +3,12 @@ package com.ok.okboard.controller;
 import com.ok.okboard.dto.PostDTO;
 import com.ok.okboard.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -27,10 +26,44 @@ public class PostController {
         return ResponseEntity.ok(dtoList);
     }
 
+    // 게시글 조회
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getPosts(@PathVariable("id") int id) throws Exception {
         PostDTO post = service.findPostById(id);
         return ResponseEntity.ok(post);
+    }
+
+
+    // 게시글 작성
+    @PostMapping
+    public ResponseEntity<String> createPost(@RequestBody PostDTO postDto) throws Exception{
+
+        postDto.setCreatedAt(LocalDateTime.now());
+        postDto.setTitle(postDto.getTitle());
+        postDto.setContent(postDto.getContent());
+        service.createPost(postDto);
+        return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+    }
+
+    // 게시글 수정
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> updatePost(@PathVariable("id") int id, @RequestBody PostDTO postDto) throws Exception {
+        PostDTO existingPost = service.findPostById(id);
+
+        existingPost.setTitle(postDto.getTitle());
+        existingPost.setContent(postDto.getContent());
+        existingPost.setUpdatedAt(LocalDateTime.now());
+
+        service.updatePost(existingPost);
+
+        return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+    }
+
+    // 게시글 삭제
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> deletePost(@PathVariable("id") int id) throws Exception {
+        service.deletePost(id);
+        return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
     }
 
 }

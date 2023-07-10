@@ -30,10 +30,6 @@ public class UserService {
                 .orElseThrow(() -> new Exception("User not found with ID: " + id));
     }
 
-    public void deleteUser(int id) throws Exception {
-        repository.deleteById(id);
-    }
-
     public void updateUser(UserDTO userDto) throws Exception {
         User existingUser = repository.findById(userDto.getId())
                 .orElseThrow(() -> new Exception("User not found with ID: " + userDto.getId()));
@@ -45,6 +41,8 @@ public class UserService {
         repository.save(existingUser);
     }
 
-    /*public void createUser(UserDTO userDto) {
-    }*/
+    public void deleteUser(int id) throws Exception {
+        repository.deleteById(id);
+    }
+
 }

@@ -21,7 +21,8 @@ public class SignService {
         return false;
     }
 
-    public Integer signUp(UserDTO userDto) throws Exception {
+    // 회원가입
+    public int signUp(UserDTO userDto) throws Exception {
         User user = new User();
         user.setEmail(userDto.getEmail());
         user.setName((userDto.getName()));

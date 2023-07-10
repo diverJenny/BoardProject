@@ -33,15 +33,6 @@ public class UserController {
     }
 
 
-    /*@PostMapping
-    public ResponseEntity<String> createUser(@RequestBody UserDTO userDto) throws Exception{
-
-        userDto.setCreatedAt(LocalDateTime.now());
-        userDto.setRole(false);
-        userService.createUser(userDto);
-        return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-    }*/
-
     // 사용자 수정
     @PutMapping("/{id}")
     public ResponseEntity<String> updateUser(@PathVariable("id") int id, @RequestBody UserDTO userDto) throws Exception {

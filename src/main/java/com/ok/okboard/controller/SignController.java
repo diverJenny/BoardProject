@@ -17,6 +17,7 @@ public class SignController {
 
     private final SignService service;
 
+    // 로그인
     @PostMapping("/sign-in")
     public ResponseEntity signIn(@RequestBody UserDTO userDto) {
         String email = userDto.getEmail();
