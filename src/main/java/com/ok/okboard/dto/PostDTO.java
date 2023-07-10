@@ -1,24 +1,22 @@
-package com.ok.okboard.domain;
+package com.ok.okboard.dto;
 
-import com.ok.okboard.dto.PostDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.ok.okboard.domain.Post;
+import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
-@Entity
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Builder
-public class Post {
+public class PostDTO {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "post_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
     private String content;
@@ -26,12 +24,8 @@ public class Post {
     private LocalDateTime updatedAt;
     private int viewCnt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    public PostDTO toPostDto() {
-        return PostDTO.builder()
+    public Post toPost() {
+        return Post.builder()
                 .id(id)
                 .title(title)
                 .content(content)

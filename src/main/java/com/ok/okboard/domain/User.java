@@ -23,7 +23,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     // DB 컬럼으로 등록
     @Column(name = "user_id", nullable = false, updatable = false)
-    private Long id;
+    private int id;
     private String email;
     private String name;
     private String password;

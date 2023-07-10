@@ -24,13 +24,13 @@ public class UserService {
         return userDtoList;
     }
 
-    public UserDTO findUserById(Long id) throws Exception {
+    public UserDTO findUserById(int id) throws Exception {
         return repository.findById(id)
                 .map(User::toUserDto)
                 .orElseThrow(() -> new Exception("User not found with ID: " + id));
     }
 
-    public void deleteUser(Long id) throws Exception {
+    public void deleteUser(int id) throws Exception {
         repository.deleteById(id);
     }
 
@@ -44,4 +44,7 @@ public class UserService {
 
         repository.save(existingUser);
     }
+
+    /*public void createUser(UserDTO userDto) {
+    }*/
 }

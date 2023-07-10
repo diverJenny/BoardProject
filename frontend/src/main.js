@@ -5,7 +5,6 @@ import vuetify from './plugins/vuetify'
 import axios from "axios";
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
-// import { loadFonts } from './plugins/webfontloader'
 
 // Axios 인스턴스 생성
 const axiosInstance = axios.create({

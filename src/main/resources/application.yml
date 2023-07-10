@@ -4,8 +4,6 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: qwer1234
-  # ???? spring.io? doc?? ?????.
-  # JPA ??
   jpa:
     database-platform: org.hibernate.dialect.MariaDBDialect
     open-in-view: false

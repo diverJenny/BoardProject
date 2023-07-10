@@ -41,5 +41,4 @@ nav a.router-link-exact-active {
 </style>
 <script setup>
 import Header from "@/components/PageHeader.vue";
-import Footer from "@/components/PageFooter.vue";
 </script>

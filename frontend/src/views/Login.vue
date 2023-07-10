@@ -19,7 +19,6 @@
 
 <script>
 import {reactive} from "vue";
-// import {stat} from "@babel/core/lib/gensync-utils/fs";
 import axios from "axios";
 
 export default {
@@ -33,7 +32,7 @@ export default {
     });
 
     const submit = () => {
-      axios.post("/api/account/login", state.form).then((res) => {
+      axios.post("/sign-api/sign-in", state.form).then((res) => {
         console.log(res);
         alert("로그인 하였습니다.");
       })

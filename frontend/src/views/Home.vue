@@ -15,11 +15,11 @@ export default {
   components: {Card},
   setup() {
     const state = reactive({
-      items: []
+      posts: []
     })
 
-    axios.get("/posts").then(({data}) => {
-      state.posts = data;
+    axios.get("/api/posts").then((res) => {
+      state.posts = res.data;
     });
     // 아래와 같이 사용할 수 있다. {} 안에 있는 특정 프로퍼티를 바로 꺼내쓸 수 있는 것이 위의 문법.
     /*

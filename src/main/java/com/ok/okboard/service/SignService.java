@@ -21,7 +21,7 @@ public class SignService {
         return false;
     }
 
-    public Long signUp(UserDTO userDto) throws Exception {
+    public Integer signUp(UserDTO userDto) throws Exception {
         User user = new User();
         user.setEmail(userDto.getEmail());
         user.setName((userDto.getName()));
