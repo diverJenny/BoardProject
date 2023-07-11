@@ -31,6 +31,8 @@ public class SignService {
         user.setEmail(userDto.getEmail());
         user.setName((userDto.getName()));
         user.setPassword(userDto.getPassword());
+        user.setCreatedAt(LocalDateTime.n햣ow());
+        user.setRole(false);
 
         User saveUser = repository.save(user);
         return saveUser.getId();
