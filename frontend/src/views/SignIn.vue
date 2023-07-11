@@ -10,8 +10,9 @@
   </v-sheet>
 </template>
 
-<script setup>
-import { reactive } from "vue";
+<!--<script setup>-->
+<script>
+import { reactive, ref } from "vue";
 import axios from "axios";
 import router from "@/router/router";
 
@@ -22,14 +23,17 @@ const state = reactive({
   }
 });
 
+const isLoggedIn = ref(false);
+const username = ref("");
+
 const submit = () => {
   axios
       .post("/sign-api/sign-in", state.form)
       .then((res) => {
         // 로그인 성공한 경우
-        const isLoggedIn = true;
-        const username = res.data.username;
-        alert(`${username}님 환영합니다.`);
+        isLoggedIn.value = true;
+        username.value = res.data.username;
+        alert(`${username.value}님 환영합니다.`);
         router.push("/");
       })
       .catch((error) => {
@@ -39,5 +43,5 @@ const submit = () => {
       });
 };
 
-export { state, submit };
+export { state, isLoggedIn, username, submit };
 </script>
