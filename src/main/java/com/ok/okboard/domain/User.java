@@ -24,12 +24,20 @@ public class User {
     // DB 컬럼으로 등록
     @Column(name = "user_id", nullable = true)
     private Long id;
+
+    @Column(length = 50, nullable = false, unique = true)
     private String email;
+
     private String name;
+
+    @Column(length = 50, nullable = false)
     private String password;
+
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt; // createdAt 필드에 @Column 어노테이션 추가
+
     private LocalDateTime updatedAt;
+
     @ColumnDefault("false")
     private Boolean role;
 

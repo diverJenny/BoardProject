@@ -31,10 +31,15 @@ public class SignService {
         user.setEmail(userDto.getEmail());
         user.setName((userDto.getName()));
         user.setPassword(userDto.getPassword());
-        user.setCreatedAt(LocalDateTime.n햣ow());
+        user.setCreatedAt(LocalDateTime.now());
         user.setRole(false);
 
         User saveUser = repository.save(user);
         return saveUser.getId();
+    }
+
+    // 이메일로 사용자 정보 가져오기
+    public User getUserByEmail(String email) {
+        return repository.findByEmail(email);
     }
 }

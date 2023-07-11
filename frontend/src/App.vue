@@ -1,6 +1,6 @@
 <template>
   <v-layout class="rounded rounded-md">
-    <v-app-bar title="OK Board">
+    <router-link to="/"></router-link><v-app-bar title="OK Board">
       <Header/>
     </v-app-bar>
 
@@ -39,6 +39,34 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
-<script setup>
+<script>
 import Header from "@/components/PageHeader.vue";
+import { provide, ref } from "vue";
+
+export default {
+  components: {
+    Header
+  },
+  data() {
+    return {
+      isLoggedIn: false,
+      username: ""
+    };
+  },
+  methods: {
+    logout() {
+      // 로그아웃 처리 로직 작성
+      // 로그아웃 후 isLoggedIn을 false로 설정하고 필요한 경우 추가 로직을 수행
+    },
+    clearState() {
+      // 상태 초기화 로직 작성
+      this.isLoggedIn = false;
+      this.username = "";
+    }
+  },
+  setup() {
+    provide("isLoggedIn", this.isLoggedIn);
+    provide("username", this.username);
+  }
+};
 </script>

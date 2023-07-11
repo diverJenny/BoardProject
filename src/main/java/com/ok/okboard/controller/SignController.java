@@ -23,18 +23,22 @@ public class SignController {
     public ResponseEntity signIn(@RequestBody UserDTO userDto) {
         String email = userDto.getEmail();
         String password = userDto.getPassword();
-
         // 사용자 인증 처리
         boolean isAuthenticated = service.signIn(email, password);
 
         if(isAuthenticated) {
             // 인증 성공
-            return ResponseEntity.ok("로그인 성공");
+            User user = service.getUserByEmail(email);
+//            String tocken = generateTocken();
+            return ResponseEntity.ok("SUCCESS");
         } else {
             // 인증 실패
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
         }
     }
+
+    /*private String generateTocken() {
+    }*/
 
     // 회원가입
     @PostMapping("/sign-up")
@@ -46,5 +50,10 @@ public class SignController {
         service.signUp(userDto);
         return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
     }
+
+
+    // 로그아웃
+    /*public String logout(@RequestBody UserDTO userDTO) {
+    }*/
 
 }

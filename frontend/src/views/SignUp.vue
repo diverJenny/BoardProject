@@ -48,6 +48,7 @@
 
 <script>
 import axios from "axios";
+import router from "@/router/router";
 
 export default {
   name: 'SignUp',
@@ -63,6 +64,9 @@ export default {
   methods: {
     submitRegistration() {
       // 유효성 검사
+      if(this.name.length < 2) {
+        alert("이름은 두 글자 이상을 입력해 주세요.");
+      }
       if (!this.name || !this.email || !this.password || !this.passwordConfirm || !this.terms) {
         alert('모든 필드를 입력하고 약관에 동의해야 합니다.');
         return;
@@ -82,7 +86,7 @@ export default {
           .then((response) => {
             console.log(response.data);
             alert('회원가입이 완료되었습니다.');
-            // 회원가입 성공 후 리다이렉트 등 필요한 동작 수행
+            router.push("/");
           })
           .catch((error) => {
             console.error(error);
