@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkfrontend"]=self["webpackChunkfrontend"]||[]).push([[443],{914:function(n,r,e){e.r(r),e.d(r,{default:function(){return d}});var t=e(252);const u={class:"signUp"},s=(0,t._)("h1",null,"회원가입 페이지입니다.",-1),c=[s];function f(n,r){return(0,t.wg)(),(0,t.iD)("div",u,c)}var a=e(744);const i={},o=(0,a.Z)(i,[["render",f]]);var d=o}}]);
-//# sourceMappingURL=about.bb53c39a.js.map

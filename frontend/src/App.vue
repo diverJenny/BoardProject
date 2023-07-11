@@ -1,21 +1,21 @@
 <template>
-  <PageHeader/> <!-- 헤더 컴포넌트 -->
-  <router-view/>  <!-- 페이지 이동이 표시될 곳 -->
-  <PageFooter/> <!-- 푸터 컴포넌트 -->
+  <v-layout class="rounded rounded-md">
+    <v-app-bar title="OK Board">
+      <Header/>
+    </v-app-bar>
+
+<!--    <v-navigation-drawer>
+      <v-list>
+        <v-list-item title="Navigation">
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>-->
+
+    <v-main class="d-flex align-center justify-center" style="min-height: 300px;">
+      <router-view></router-view>
+    </v-main>
+  </v-layout>
 </template>
-
-<script>
-import PageHeader from '@/components/PageHeader'
-import PageFooter from '@/components/PageFooter'
-
-export default {
-  name: 'App',
-  components: {
-    PageFooter,
-    PageHeader
-  }
-}
-</script>
 
 <style>
 #app {
@@ -24,19 +24,21 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
-#nav {
+nav {
   padding: 30px;
 }
 
-#nav a {
+nav a {
   font-weight: bold;
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
+nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
+<script setup>
+import Header from "@/components/PageHeader.vue";
+</script>
