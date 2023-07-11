@@ -24,7 +24,7 @@ public class PostService {
         return postDtoList;
     }
 
-    public PostDTO findPostById(int id) throws Exception {
+    public PostDTO findPostById(Long id) throws Exception {
         return repository.findById(id)
                 .map(Post::toPostDto)
                 .orElseThrow(() -> new Exception("Post not found with Id: " + id));
@@ -35,7 +35,7 @@ public class PostService {
         post.setTitle(postDto.getTitle());
         post.setContent(postDto.getContent());
 
-        return repository.save(postDto.toPost()).getId();
+        return Math.toIntExact(repository.save(postDto.toPost()).getId());
     }
 
     public void updatePost(PostDTO postDto) throws Exception {
@@ -49,7 +49,7 @@ public class PostService {
         repository.save(existingPost);
     }
 
-    public void deletePost(int id) {
+    public void deletePost(Long id) {
         repository.deleteById(id);
     }
 }

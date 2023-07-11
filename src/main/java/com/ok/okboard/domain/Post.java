@@ -17,7 +17,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "post_id")
-    private int id;
+    private Long id;
     private String title;
     private String content;
     private LocalDateTime createdAt;

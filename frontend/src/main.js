@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from "@/router/router";
+import router from "./router/router";
 import vuetify from './plugins/vuetify'
 import axios from "axios";
 import 'vuetify/dist/vuetify.min.css'

@@ -28,7 +28,7 @@ public class PostController {
 
     // 게시글 조회
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getPosts(@PathVariable("id") int id) throws Exception {
+    public ResponseEntity<?> getPosts(@PathVariable("id") Long id) throws Exception {
         PostDTO post = service.findPostById(id);
         return ResponseEntity.ok(post);
     }
@@ -47,7 +47,7 @@ public class PostController {
 
     // 게시글 수정
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> updatePost(@PathVariable("id") int id, @RequestBody PostDTO postDto) throws Exception {
+    public ResponseEntity<String> updatePost(@PathVariable("id") Long id, @RequestBody PostDTO postDto) throws Exception {
         PostDTO existingPost = service.findPostById(id);
 
         existingPost.setTitle(postDto.getTitle());
@@ -61,7 +61,7 @@ public class PostController {
 
     // 게시글 삭제
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> deletePost(@PathVariable("id") int id) throws Exception {
+    public ResponseEntity<String> deletePost(@PathVariable("id") Long id) throws Exception {
         service.deletePost(id);
         return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
     }

@@ -22,12 +22,13 @@ public class User {
     // 식별키 생성 전략 명시(AUTO : 데이터베이스에 맞게 자동으로 생성)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     // DB 컬럼으로 등록
-    @Column(name = "user_id", nullable = false, updatable = false)
-    private int id;
+    @Column(name = "user_id", nullable = true)
+    private Long id;
     private String email;
     private String name;
     private String password;
-    private LocalDateTime createdAt;
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime createdAt; // createdAt 필드에 @Column 어노테이션 추가
     private LocalDateTime updatedAt;
     @ColumnDefault("false")
     private Boolean role;

@@ -3,6 +3,7 @@ package com.ok.okboard.dto;
 import com.ok.okboard.domain.User;
 import lombok.*;
 
+import javax.persistence.Column;
 import java.time.LocalDateTime;
 
 @Data
@@ -12,13 +13,13 @@ import java.time.LocalDateTime;
 @Builder
 public class UserDTO {
 
-    private int id;
+    private Long id;
     private String email;
     private String name;
     private String password;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private Boolean role;
+    private Boolean role = false;
 
     public User toUser() {
         return User.builder()

@@ -24,7 +24,7 @@ public class UserService {
         return userDtoList;
     }
 
-    public UserDTO findUserById(int id) throws Exception {
+    public UserDTO findUserById(Long id) throws Exception {
         return repository.findById(id)
                 .map(User::toUserDto)
                 .orElseThrow(() -> new Exception("User not found with ID: " + id));
@@ -41,7 +41,7 @@ public class UserService {
         repository.save(existingUser);
     }
 
-    public void deleteUser(int id) throws Exception {
+    public void deleteUser(Long id) throws Exception {
         repository.deleteById(id);
     }
 
